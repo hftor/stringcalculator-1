@@ -10,8 +10,11 @@ public class Calculator {
 			return sum(splitNumbers(text));
 		}
 		else if(text.contains("\n")){
-			String[] numbers = text.split("\n");
-			return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
+			int total = 0;
+			for(String number : text.split("\n")){
+				total += toInt(number);
+			}
+			return total;
 		}
 		else{
 			return 1;
