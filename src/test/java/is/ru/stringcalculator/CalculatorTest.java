@@ -43,4 +43,9 @@ public class CalculatorTest {
         public void testNewlineMultipleNumbers() {
                 assertEquals(6, Calculator.add("1\n2\n3"));
         }
+
+	@Test
+        public void testNewlineAndCommas() {
+                assertEquals(6, Calculator.add("1,2\n3"));
+        }
 }
