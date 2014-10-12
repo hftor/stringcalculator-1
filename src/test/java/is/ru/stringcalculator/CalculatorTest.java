@@ -33,4 +33,9 @@ public class CalculatorTest {
         public void testTenNumber() {
                 assertEquals(55, Calculator.add("1,2,3,4,5,6,7,8,9,10"));
         }
+
+	@Test
+        public void testNewline() {
+                assertEquals(3, Calculator.add("1\n2"));
+        }
 }

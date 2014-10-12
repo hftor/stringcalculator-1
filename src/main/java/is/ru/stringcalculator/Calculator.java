@@ -9,6 +9,10 @@ public class Calculator {
 		else if(text.contains(",")){
 			return sum(splitNumbers(text));
 		}
+		else if(text.contains("\n")){
+			String[] numbers = text.split("\n");
+			return Integer.parseInt(numbers[0]) + Integer.parseInt(numbers[1]);
+		}
 		else{
 			return 1;
 		}
