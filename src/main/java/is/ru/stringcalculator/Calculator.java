@@ -10,6 +10,23 @@ public class Calculator {
 			return toInt(text);
 		}
 		else if(text.substring(0, 2).equals("//")){
+			if(text.charAt(2) == '['){
+				int i = 3;
+				while(text.charAt(i) != ']'){
+					i++;
+				}
+				String del = text.substring(3, i);
+				String newDel = "";
+				for(int a = 0; a < del.length(); a++){
+					newDel += "\\";
+					newDel += del.charAt(a);
+				}
+				String newString = text.replaceFirst("\n", "");
+				String newString2 = newString.replaceAll(newDel, ",");
+				String newString3 = newString2.substring(5);
+
+				return sum(splitNumbers(newString3));
+			}
 			return sum(splitNumbers(newDelimString(text)));
 		}
                 else if(text.contains(",") || text.contains("\n")){
