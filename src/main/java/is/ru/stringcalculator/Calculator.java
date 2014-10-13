@@ -20,14 +20,14 @@ public class Calculator {
                 }
         }
 	public static String newDelimString(String text){
-		String index = String.valueOf(text.charAt(2));
+                String index = String.valueOf(text.charAt(2));
                 String newString = text.replaceAll("\n", "");
                 String newString2 = newString.replaceAll(index, ",");
                 String newString3 = newString2.replaceAll("//", "");
                 String newString4 = newString3.replaceFirst(",", "");
 
                 return newString4;
-	}
+        }
 
         private static int toInt(String number){
                 return Integer.parseInt(number);
@@ -39,7 +39,17 @@ public class Calculator {
 
         private static int sum(String[] numbers){
                 int total = 0;
+		String error = "Negatives not allowed: -1";
                 for(String number : numbers){
+			int count = 0;
+			for(char i : number.toCharArray()){
+				if(i == '-'){
+				count++;
+				}
+			}
+			if(count != 0){
+				throw new RuntimeException(error);
+			}
                         total += toInt(number);
                 }
                 return total;
