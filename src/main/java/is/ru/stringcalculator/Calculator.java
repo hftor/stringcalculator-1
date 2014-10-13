@@ -37,21 +37,19 @@ public class Calculator {
                 return numbers.split("(,)|(\n)");
         }
 
-        private static int sum(String[] numbers){
+	private static int sum(String[] numbers){
                 int total = 0;
-		String error = "Negatives not allowed: -1";
+                String error = "Negatives not allowed: -1";
                 for(String number : numbers){
-			int count = 0;
-			for(char i : number.toCharArray()){
-				if(i == '-'){
-				count++;
-				}
-			}
-			if(count != 0){
-				throw new RuntimeException(error);
-			}
+                        if(checkIfNegative(toInt(number))){
+                                throw new RuntimeException(error);
+                        }
                         total += toInt(number);
                 }
                 return total;
+        }
+
+        private static boolean checkIfNegative(int number){
+                return number < 0;
         }
 }
