@@ -55,7 +55,9 @@ public class Calculator {
 				}
                         }
 			else{
-				total += toInt(number);
+				if(toInt(number) <= 1000){
+					total += toInt(number);
+				}
 			}
                 }
 		if(containNegativeNumber){
