@@ -39,13 +39,29 @@ public class Calculator {
 
 	private static int sum(String[] numbers){
                 int total = 0;
-                String error = "Negatives not allowed: -1";
-                for(String number : numbers){
+                String error = "Negatives not allowed:";
+		boolean firstNeg = true;
+		boolean neg = false;
+
+		 for(String number : numbers){
                         if(checkIfNegative(toInt(number))){
-                                throw new RuntimeException(error);
+				neg = true;
+				if(firstNeg){
+					firstNeg = false;
+					error += number;
+				}
+				else{
+					error += ",";
+					error += number;
+				}
                         }
-                        total += toInt(number);
+			else{
+				total += toInt(number);
+			}
                 }
+		if(neg){
+			throw new RuntimeException(error);
+		}
                 return total;
         }
 

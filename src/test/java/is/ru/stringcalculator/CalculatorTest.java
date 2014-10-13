@@ -60,7 +60,7 @@ public class CalculatorTest {
 			Calculator.add("-1,2");
 		}
 		catch(RuntimeException e){
-			assertEquals("Negatives not allowed: -1", e.getMessage());
+			assertEquals("Negatives not allowed:-1", e.getMessage());
 		}
         }
 }
