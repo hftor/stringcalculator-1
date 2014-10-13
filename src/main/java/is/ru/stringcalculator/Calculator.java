@@ -55,7 +55,7 @@ public class Calculator {
 				}
                         }
 			else{
-				if(toInt(number) <= 1000){
+				if(isNumberLessThatThousand(toInt(number))){
 					total += toInt(number);
 				}
 			}
@@ -69,4 +69,8 @@ public class Calculator {
         private static boolean checkIfNegative(int number){
                 return number < 0;
         }
+
+	private static boolean isNumberLessThatThousand(int number){
+		return number <= 1000;
+	}
 }
