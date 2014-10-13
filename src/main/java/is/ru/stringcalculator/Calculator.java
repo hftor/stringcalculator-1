@@ -10,14 +10,7 @@ public class Calculator {
 			return toInt(text);
 		}
 		else if(text.substring(0, 2).equals("//")){
-			String index = String.valueOf(text.charAt(2));
-			String newString = text.replaceAll("\n", "");
-			String newString2 = newString.replaceAll(index, ",");
-			String newString3 = newString2.replaceAll("//", "");
-			String newString4 = newString3.replaceFirst(",", "");
-
-			return sum(splitNumbers(newString4));
-			
+			return sum(splitNumbers(newDelimString(text)));
 		}
                 else if(text.contains(",") || text.contains("\n")){
                         return sum(splitNumbers(text));
@@ -26,6 +19,15 @@ public class Calculator {
                         return 1;
                 }
         }
+	public static String newDelimString(String text){
+		String index = String.valueOf(text.charAt(2));
+                String newString = text.replaceAll("\n", "");
+                String newString2 = newString.replaceAll(index, ",");
+                String newString3 = newString2.replaceAll("//", "");
+                String newString4 = newString3.replaceFirst(",", "");
+
+                return newString4;
+	}
 
         private static int toInt(String number){
                 return Integer.parseInt(number);
