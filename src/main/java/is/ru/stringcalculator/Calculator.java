@@ -41,25 +41,24 @@ public class Calculator {
                 int total = 0;
                 String error = "Negatives not allowed:";
 		boolean firstNeg = true;
-		boolean neg = false;
+		boolean containNegativeNumber = false;
 
 		 for(String number : numbers){
                         if(checkIfNegative(toInt(number))){
-				neg = true;
+				containNegativeNumber = true;
 				if(firstNeg){
 					firstNeg = false;
 					error += number;
 				}
 				else{
-					error += ",";
-					error += number;
+					error += "," + number;
 				}
                         }
 			else{
 				total += toInt(number);
 			}
                 }
-		if(neg){
+		if(containNegativeNumber){
 			throw new RuntimeException(error);
 		}
                 return total;
