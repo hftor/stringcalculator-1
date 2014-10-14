@@ -10,22 +10,30 @@ public class Calculator {
 			return toInt(text);
 		}
 		else if(text.substring(0, 2).equals("//")){
+			text = text.replaceFirst("\n", "");
 			if(text.charAt(2) == '['){
-				int i = 3;
-				while(text.charAt(i) != ']'){
-					i++;
-				}
-				String del = text.substring(3, i);
-				String newDel = "";
-				for(int a = 0; a < del.length(); a++){
-					newDel += "\\";
-					newDel += del.charAt(a);
-				}
-				String newString = text.replaceFirst("\n", "");
-				String newString2 = newString.replaceAll(newDel, ",");
-				String newString3 = newString2.substring(5);
 
-				return sum(splitNumbers(newString3));
+				text = text.substring(2);
+
+				while(text.startsWith("[")){
+					text = text.substring(1);
+					int i = 0;
+					while(text.charAt(i) != ']'){
+						i++;
+					}
+					String del = text.substring(0, i);
+					String newDel = "";
+					for(int a = 0; a < del.length(); a++){
+						newDel += "\\";
+						newDel += del.charAt(a);
+					}
+					text = text.replaceFirst("]", "");
+					text = text.replaceAll(newDel, ",");
+					if(text.startsWith(",")){
+						text = text.substring(1);
+					}
+				}
+				return sum(splitNumbers(text));
 			}
 			return sum(splitNumbers(newDelimString(text)));
 		}
