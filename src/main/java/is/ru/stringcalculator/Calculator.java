@@ -12,26 +12,9 @@ public class Calculator {
 		else if(text.substring(0, 2).equals("//")){
 			text = text.replaceFirst("\n", "");
 			if(text.charAt(2) == '['){
-
 				text = text.substring(2);
-
 				while(text.startsWith("[")){
-					text = text.substring(1);
-					int i = 0;
-					while(text.charAt(i) != ']'){
-						i++;
-					}
-					String del = text.substring(0, i);
-					String newDel = "";
-					for(int a = 0; a < del.length(); a++){
-						newDel += "\\";
-						newDel += del.charAt(a);
-					}
-					text = text.replaceFirst("]", "");
-					text = text.replaceAll(newDel, ",");
-					if(text.startsWith(",")){
-						text = text.substring(1);
-					}
+					text = replaceDelimiter(text);
 				}
 				return sum(splitNumbers(text));
 			}
@@ -44,6 +27,25 @@ public class Calculator {
                         return 1;
                 }
         }
+	public static String replaceDelimiter(String text){
+		text = text.substring(1);
+                int i = 0;
+                while(text.charAt(i) != ']'){
+                	i++;
+                }
+                String del = text.substring(0, i);
+                String newDel = "";
+                for(int a = 0; a < del.length(); a++){
+                	newDel += "\\";
+                	newDel += del.charAt(a);
+                }
+                text = text.replaceFirst("]", "");
+                text = text.replaceAll(newDel, ",");
+                if(text.startsWith(",")){
+                	text = text.substring(1);
+                }
+		return text;
+	}
 	public static String newDelimString(String text){
                 String index = String.valueOf(text.charAt(2));
                 String newString = text.replaceAll("\n", "");
